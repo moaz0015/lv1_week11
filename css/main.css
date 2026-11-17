@@ -147,6 +147,8 @@ section.three article {
     
     grid-template-columns: 1fr 2fr 1fr;
     grid-auto-rows: 120px;
+    /* you can add space between grid cells with gap */
+    gap: 1em 1em;
 }
 
 section.three div:nth-child(2) {
@@ -166,4 +168,52 @@ section.three div:nth-child(5) {
     grid-row-end: span 2; 
 
     */
+}
+
+/* grid 4 - using a grid map */
+
+section.four article {
+    display: grid;
+    
+    /* the first step of using a map is to draw the map */
+    grid-template-areas:
+        "nav cart"
+        "header header"
+        "main main"
+        "photo1 photo2"
+        "aside aside"
+        "footer footer";
+}
+
+/* the second step is to tell each element which map space it should fill */
+section.four div:nth-child(1){ grid-area: nav; }
+section.four div:nth-child(2){ grid-area: cart; }
+section.four div:nth-child(3){ grid-area: header; }
+section.four div:nth-child(4){ grid-area: main; }
+section.four div:nth-child(5){ grid-area: photo1; }
+section.four div:nth-child(6){ grid-area: photo2; }
+section.four div:nth-child(7){ grid-area: aside; }
+section.four div:nth-child(8){ grid-area: footer; }
+
+@media screen and (min-width: 720px) {
+    /* to change the layout of the page, all you have to do is redraw the map */
+    section.four article {
+        grid-template-areas:
+            "nav nav cart"
+            "header header header"
+            "main main main"
+            "photo1 photo2 aside"
+            "footer footer footer";
+    }
+}
+
+@media screen and (min-width: 900px) {
+    section.four article {
+        grid-template-areas: 
+        "nav nav nav cart"
+        "header header header header"
+        "aside main main photo1"
+        "aside main main photo2"
+        "aside footer footer footer"
+    }
 }
